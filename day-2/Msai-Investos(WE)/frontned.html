@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="text/html" href="frontned.html">
+    <link rel="text/html" href="backend.html">
+    <style>
+      h1{
+        text-align: center;
+        font-size: 40px;
+        margin-bottom: 40px;
+      }
+      #container {
+        display: grid;
+        width: 92%;
+        margin: auto;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(4, auto);
+        gap: 20px;
+      }      
+      #container>div{
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+        #container img{
+            width: 100%;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+        #container>div>p+img{
+            text-align: center;
+            height: 50px;
+            width: 140px;
+        }
+        h2{
+          font-family: 'Poppins', sans-serif;
+          font-weight: 500;
+          margin-top: 5px;
+        }
+        p{
+          font-family: 'Poppins', sans-serif;
+          font-weight: 300;
+          margin-top: -18px;
+        }
+        p+img {
+            height: 50px;
+            width: 100px;
+            margin-top: -20px;
+        }
+    </style>
+  </head>
+  <body>
+    <h1>Our Strategic Investors</h1>
+    <div id="container">
+
+    </div>
+  </body>
+</html>
+
+<script>
+  var investors = JSON.parse(localStorage.getItem("investorsData")) ;
+
+  investors.forEach(function(ele){
+    const div = document.createElement('div');
+    
+    const personImage = document.createElement('img');
+    personImage.setAttribute("src",ele.investorImage) ;
+    personImage.style.width = "100%" ;
+
+    const h3 = document.createElement('h3');
+    h3.innerText = ele.investorName ;
+
+    const p = document.createElement('p') ;
+    p.innerText = ele.investorRole ;
+
+    const company = document.createElement('img');
+    company.setAttribute("src", ele.companyLogo) ;
+
+    div.append(personImage,h3,p,company) ;
+    document.querySelector("#container").append(div) ;
+
+  });
+</script>
