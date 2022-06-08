@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-COMMERCE PAYMENT GATEWAY</title>
+    <style>
+      * {
+        margin: 0px;
+        padding: 0px;
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      body {
+        background-color: rgb(170, 170, 170);
+      }
+      #container {
+        width: 25%;
+        margin: auto;
+        margin-top: 50px;
+        background-color: white;
+        text-align: center;
+        border-radius: 10px;
+        padding: 12px 0px 30px 0px;
+      }
+      #container > div:first-child {
+        background-color: rgb(247, 247, 247);
+        width: 100%;
+        font-size: 22px;
+        font-weight: 400;
+        padding: 10px;
+      }
+      #container > div:last-child {
+        background-color: rgb(247, 247, 247);
+        width: 97%;
+        margin: auto;
+        margin-top: 10px;
+        padding: 1px 10px;
+      }
+      p {
+        font-size: 17px;
+        margin: 10px;
+      }
+      p + div {
+        width: 95%;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(auto);
+        gap: 20px;
+      }
+      p + div > div {
+        height: 35px;
+        border-radius: 3px;
+      }
+      input {
+        width: 95%;
+        height: 35px;
+        border-radius: 10px;
+        border: 1px solid black;
+        text-align: center;
+      }
+      input:focus {
+        outline: none;
+      }
+      input + div {
+        display: flex;
+      }
+      button {
+        width: 75%;
+        height: 55px;
+        border-radius: 10px;
+        text-align: center;
+        background-color: rgb(0, 172, 242);
+        border: 1px solid rgb(0, 172, 242);
+        color: white;
+        font-size: 22px;
+        font-weight: 500;
+        margin: 20px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <div>Pay Invoice</div>
+      <div>
+        <p>Pay method</p>
+        <div>
+          <div style="background-color: rgb(109, 54, 173)"></div>
+          <div style="background-color: rgb(182, 55, 172)"></div>
+          <div style="background-color: rgb(239, 117, 32)"></div>
+          <div style="background-color: rgb(0, 141, 171)"></div>
+        </div>
+        <p>Card number</p>
+        <input type="tel" id="cardNumber" name="cardNumber" />
+        <div>
+          <div>
+            <p>Expiry date</p>
+            <input type="tel" id="expiryDate" name="expiryDate" />
+          </div>
+          <div>
+            <p>Security Code</p>
+            <input type="tel" id="securityCode" name="securityCode" />
+          </div>
+        </div>
+        <p>Card name</p>
+        <input type="text" id="cardName" />
+        <button type="submit" id="submit">
+          Pay &nbsp;&nbsp;<span id="pay"></span>
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
+<script>
+  var number = "1234567890";
+  var date = "03/30";
+  var cvv = "786";
+  var name = "hello";
+
+  let pay = Math.floor(Math.random() * (1000 - 100) + 100);
+  document.getElementById("pay").innerText = `${pay} $`;
+  document.getElementById("submit").addEventListener("click", myFunction);
+
+  function myFunction() {
+    let num = document.getElementById("cardNumber").value;
+    let dates = document.getElementById("expiryDate").value;
+    let security = document.getElementById("securityCode").value;
+    let names = document.getElementById("cardName").value;
+
+    if (num === "" || dates === "" || names === "" || security === "") {
+      alert("Please Fill all the Details!");
+    } else {
+      if (
+        number === num &&
+        date === dates &&
+        cvv === security &&
+        name === names
+      ) {
+        window.location.href = `./OTP.html`;
+      } else {
+        alert("ERROR: Invalid Credentials");
+      }
+    }
+  }
+</script>
